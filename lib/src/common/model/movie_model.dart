@@ -50,8 +50,16 @@ class MovieModel {
 
   @override
   String toString() {
-    return 'MovieModel(id: $id, name: $name, mainPicture: $mainPicture, detailPicture: $detailPicture rate: $rate, '
-        'year: ${year?.toIso8601String()}, duration: ${duration?.inSeconds} seconds, '
-        'categories: $categories, description: $description)';
+    return ''' MovieModel(
+        id: $id,
+        name: $name,
+        mainPicture: $mainPicture,
+        detailPicture: $detailPicture,
+        rate: $rate,
+        year: $year,
+        duration: $duration,
+        categories: $categories,
+        description: $description,\n
+        ''';
   }
 }
