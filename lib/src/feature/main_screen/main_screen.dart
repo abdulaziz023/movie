@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:movie_app/src/feature/main_screen/popular_detail.dart';
-import 'package:movie_app/src/feature/main_screen/top_detail.dart';
-
 import '../../common/database/data_base.dart';
 import '../../common/style/app_colors.dart';
+import '../search_screen/search_screen.dart';
+import 'popular_detail.dart';
+import 'top_detail.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -31,6 +31,15 @@ class _MainScreenState extends State<MainScreen> {
           SizedBox(
             height: 50,
             child: TextFormField(
+              readOnly: true,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SearchScreen(),
+                  ),
+                );
+              },
               cursorColor: AppColors.blue,
               decoration: InputDecoration(
                 fillColor: AppColors.blackgray,
@@ -64,7 +73,10 @@ class _MainScreenState extends State<MainScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: SvgPicture.asset(
                     "assets/icon/icon_search.svg",
-                    color: AppColors.background,
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.background,
+                      BlendMode.dst,
+                    ),
                     height: 5,
                   ),
                 ),

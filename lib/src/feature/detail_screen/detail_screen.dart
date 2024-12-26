@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:movie_app/src/common/model/movie_model.dart';
-
 import '../../common/database/data_base.dart';
+import '../../common/model/movie_model.dart';
 import '../../common/style/app_colors.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -165,7 +164,8 @@ class _DetailScreenState extends State<DetailScreen>
                 children: [
                   SvgPicture.asset(
                     "assets/icon/icon_calendar.svg",
-                    color: AppColors.darkGrey,
+                    colorFilter: const ColorFilter.mode(
+                        AppColors.darkGrey, BlendMode.dst),
                     height: 20,
                   ),
                   Text(
@@ -182,7 +182,8 @@ class _DetailScreenState extends State<DetailScreen>
                 children: [
                   SvgPicture.asset(
                     "assets/icon/icon_clock.svg",
-                    color: AppColors.darkGrey,
+                    colorFilter: const ColorFilter.mode(
+                        AppColors.darkGrey, BlendMode.dst),
                     height: 20,
                   ),
                   Text(
@@ -199,7 +200,8 @@ class _DetailScreenState extends State<DetailScreen>
                 children: [
                   SvgPicture.asset(
                     "assets/icon/icon_ticket.svg",
-                    color: AppColors.darkGrey,
+                    colorFilter: const ColorFilter.mode(
+                        AppColors.darkGrey, BlendMode.dst),
                     height: 20,
                   ),
                   Text(

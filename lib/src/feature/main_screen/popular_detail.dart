@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/src/feature/detail_screen/detail_screen.dart';
 import '../../common/model/movie_model.dart';
 import '../../common/style/app_colors.dart';
+import '../detail_screen/detail_screen.dart';
 
 class PopularDetail extends StatefulWidget {
   final List<MovieModel> topRated;
@@ -58,13 +58,14 @@ class _PopularDetailState extends State<PopularDetail>
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailScreen(
-                            id: onTap
-                                ? widget.topRated[index].id!
-                                : widget.popular[index].id!),
-                      ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailScreen(
+                          id: onTap
+                              ? widget.topRated[index].id!
+                              : widget.popular[index].id!),
+                    ),
+                  );
                 },
                 child: Column(
                   children: [

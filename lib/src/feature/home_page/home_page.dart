@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../common/style/app_colors.dart';
 import '../main_screen/main_screen.dart';
+import '../search_screen/search_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,8 +29,8 @@ class _HomePageState extends State<HomePage> {
         },
         children: const [
           MainScreen(),
-          Center(child: Text("Search Screen")), // Placeholder
-          Center(child: Text("Watchlist Screen")), // Placeholder
+          SearchScreen(),
+          Center(child: Text("Watchlist Screen")),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -51,7 +52,10 @@ class _HomePageState extends State<HomePage> {
             icon: SvgPicture.asset(
               "assets/icon/icon_home.svg",
               height: 25,
-              color: index == 0 ? AppColors.blue : AppColors.blackgray,
+              colorFilter: ColorFilter.mode(
+                index == 0 ? AppColors.blue : AppColors.blackgray,
+                BlendMode.dst,
+              ),
             ),
             label: "Home",
           ),
@@ -59,7 +63,10 @@ class _HomePageState extends State<HomePage> {
             icon: SvgPicture.asset(
               "assets/icon/icon_search.svg",
               height: 25,
-              color: index == 1 ? AppColors.blue : AppColors.blackgray,
+              colorFilter: ColorFilter.mode(
+                index == 1 ? AppColors.blue : AppColors.blackgray,
+                BlendMode.dst,
+              ),
             ),
             label: "Search",
           ),
@@ -67,7 +74,10 @@ class _HomePageState extends State<HomePage> {
             icon: SvgPicture.asset(
               "assets/icon/icon_bookmark.svg",
               height: 25,
-              color: index == 2 ? AppColors.blue : AppColors.blackgray,
+              colorFilter: ColorFilter.mode(
+                index == 2 ? AppColors.blue : AppColors.blackgray,
+                BlendMode.dst,
+              ),
             ),
             label: "Watchlist",
           ),
