@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../common/database/data_base.dart';
 import '../../common/model/movie_model.dart';
+import '../../common/service/db.dart';
 import '../../common/style/app_colors.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -17,6 +18,7 @@ class _DetailScreenState extends State<DetailScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   bool _onTap = true;
+  bool? image;
   @override
   void initState() {
     super.initState();
@@ -24,6 +26,11 @@ class _DetailScreenState extends State<DetailScreen>
       length: 3,
       vsync: this,
     );
+    a();
+  }
+
+  void a() async {
+    image = await idCheck();
   }
 
   List<MovieModel> model() {
@@ -75,6 +82,23 @@ class _DetailScreenState extends State<DetailScreen>
     return list.toString().replaceFirst("[", "").replaceFirst("]", "");
   }
 
+  Future<bool?> idCheck() async {
+    bool? check;
+    final a = await DB.getAllKeys();
+    for (var keys in a) {
+      if (keys == widget.id.toString()) {
+        setState(() {
+          check = true;
+        });
+      } else {
+        setState(() {
+          check = false;
+        });
+      }
+    }
+    return check;
+  }
+
   @override
   Widget build(BuildContext context) {
     final database = model();
@@ -98,13 +122,31 @@ class _DetailScreenState extends State<DetailScreen>
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SvgPicture.asset(
-              "assets/icon/icon_bookmark.svg",
-              colorFilter: const ColorFilter.mode(
-                AppColors.white,
-                BlendMode.srcIn,
+          GestureDetector(
+            onTap: () async {
+              if (image == true) {
+                await DB.remove(widget.id.toString());
+                setState(() {
+                  a();
+                });
+              }
+              await DB.saveString(widget.id.toString(), "");
+
+              setState(() {
+                a();
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: SvgPicture.asset(
+                image == true
+                    ? "assets/icon/icon_bookmark_light.svg"
+                    : "assets/icon/icon_bookmark.svg",
+                colorFilter: const ColorFilter.mode(
+                  AppColors.white,
+                  BlendMode.srcIn,
+                ),
+                height: 27,
               ),
             ),
           )
