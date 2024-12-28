@@ -30,7 +30,10 @@ class _DetailScreenState extends State<DetailScreen>
   }
 
   void a() async {
-    image = await idCheck();
+    final result = await idCheck();
+    setState(() {
+      image = result;
+    });
   }
 
   List<MovieModel> model() {
@@ -83,6 +86,11 @@ class _DetailScreenState extends State<DetailScreen>
   }
 
   Future<bool?> idCheck() async {
+    final keys = await DB.getAllKeys();
+    return keys.contains(widget.id.toString());
+  }
+
+  Future<bool?> idCheck2() async {
     bool? check;
     final a = await DB.getAllKeys();
     for (var keys in a) {
@@ -126,15 +134,10 @@ class _DetailScreenState extends State<DetailScreen>
             onTap: () async {
               if (image == true) {
                 await DB.remove(widget.id.toString());
-                setState(() {
-                  a();
-                });
+              } else {
+                await DB.saveString(widget.id.toString(), "");
               }
-              await DB.saveString(widget.id.toString(), "");
-
-              setState(() {
-                a();
-              });
+              a();
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),

@@ -6,6 +6,7 @@ List<MovieModel> search({
 }) {
   return database
       .where((element) =>
+          element.id == num.parse(input) ||
           element.name!.contains(input) ||
           element.rate == num.tryParse(input) ||
           element.year!.year == num.tryParse(input) ||
