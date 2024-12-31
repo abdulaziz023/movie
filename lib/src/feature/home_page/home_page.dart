@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../common/style/app_colors.dart';
 import '../main_screen/main_screen.dart';
 import '../search_screen/search_screen.dart';
+import '../watch_list_screen/watch_list_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         children: const [
           MainScreen(),
           SearchScreen(),
-          Center(child: Text("Watchlist Screen")),
+          WatchListScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

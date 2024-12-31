@@ -132,6 +132,7 @@ class _DetailScreenState extends State<DetailScreen>
         actions: [
           GestureDetector(
             onTap: () async {
+              setState(() {});
               if (image == true) {
                 await DB.remove(widget.id.toString());
               } else {

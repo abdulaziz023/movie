@@ -15,6 +15,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   Set<MovieModel> result = {};
+  bool searching = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +35,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   });
                 },
                 onFieldSubmitted: (value) {
+                  setState(() {});
+
                   setState(() {
                     result.addAll(
                       search(
@@ -76,13 +79,14 @@ class _SearchScreenState extends State<SearchScreen> {
                     color: AppColors.background,
                     fontSize: 20,
                   ),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(
+                  suffixIcon: IconButton(
+                    onPressed: () {},
+                    color: AppColors.white,
+                    icon: SvgPicture.asset(
                       "assets/icon/icon_search.svg",
                       colorFilter: const ColorFilter.mode(
                           AppColors.background, BlendMode.dst),
-                      height: 5,
+                      height: 50,
                     ),
                   ),
                 ),
