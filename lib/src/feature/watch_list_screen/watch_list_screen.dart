@@ -49,7 +49,7 @@ class _WatchListScreenState extends State<WatchListScreen> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+           
           },
           icon: const Icon(
             CupertinoIcons.back,
